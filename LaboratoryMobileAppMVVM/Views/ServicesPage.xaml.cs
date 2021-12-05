@@ -1,17 +1,18 @@
 ﻿using LaboratoryMobileAppMVVM.ViewModels;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace LaboratoryMobileAppMVVM.Views
 {
-    public partial class NewsPage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class ServicesPage : ContentPage
     {
-        private readonly NewsViewModel _viewModel;
-
-        public NewsPage()
+        private readonly ServicesViewModel _viewModel;
+        public ServicesPage()
         {
             InitializeComponent();
 
-            BindingContext = _viewModel = new NewsViewModel();
+            BindingContext = _viewModel = new ServicesViewModel();
         }
 
         protected override void OnAppearing()

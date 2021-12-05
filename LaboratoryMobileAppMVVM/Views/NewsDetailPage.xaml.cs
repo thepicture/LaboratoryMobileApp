@@ -1,5 +1,4 @@
 ﻿using LaboratoryMobileAppMVVM.ViewModels;
-using System.ComponentModel;
 using Xamarin.Forms;
 
 namespace LaboratoryMobileAppMVVM.Views

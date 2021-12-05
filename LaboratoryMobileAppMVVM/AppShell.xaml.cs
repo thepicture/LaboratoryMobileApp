@@ -1,17 +1,15 @@
-﻿using LaboratoryMobileAppMVVM.ViewModels;
-using LaboratoryMobileAppMVVM.Views;
-using System;
-using System.Collections.Generic;
+﻿using LaboratoryMobileAppMVVM.Views;
 using Xamarin.Forms;
 
 namespace LaboratoryMobileAppMVVM
 {
-    public partial class AppShell : Xamarin.Forms.Shell
+    public partial class AppShell : Shell
     {
         public AppShell()
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(NewsDetailPage), typeof(NewsDetailPage));
+            Routing.RegisterRoute(nameof(ServiceDetailPage), typeof(ServiceDetailPage));
         }
     }
 }

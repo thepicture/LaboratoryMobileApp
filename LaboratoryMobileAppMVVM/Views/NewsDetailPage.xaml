@@ -1,12 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:viewmodels="clr-namespace:LaboratoryMobileAppMVVM.ViewModels" xmlns:converters="clr-namespace:LaboratoryMobileAppMVVM.Converters"
+             xmlns:viewmodels="clr-namespace:LaboratoryMobileAppMVVM.ViewModels" 
+             xmlns:converters="clr-namespace:LaboratoryMobileAppMVVM.Converters"
              x:DataType="viewmodels:NewsDetailViewModel"
-             x:Class="LaboratoryMobileAppMVVM.Views.NewsDetailPage"
-             Title="{Binding Title}">
-
-    <StackLayout Spacing="20" 
+             x:Class="LaboratoryMobileAppMVVM.Views.NewsDetailPage">
+        <Shell.TitleView>
+            <Grid>
+                <Image Source="logo.png"
+                   HorizontalOptions="End"></Image>
+                <Label Text="{Binding Title}"
+                   VerticalOptions="Center"
+                   FontSize="Large"
+                   TextColor="White"></Label>
+            </Grid>
+        </Shell.TitleView>
+    
+    <ScrollView>
+        <StackLayout Spacing="20" 
                  Padding="15">
         <Image Source="{Binding CurrentNews.ImagePreview, TargetNullValue=picture.png}"></Image>
         <StackLayout Orientation="Horizontal"
@@ -33,5 +44,6 @@
                FontAttributes="Bold"
                Margin="5"></Label>
     </StackLayout>
+    </ScrollView>
     
 </ContentPage>

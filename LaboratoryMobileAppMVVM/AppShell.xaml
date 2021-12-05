@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Shell xmlns="http://xamarin.com/schemas/2014/forms" 
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-       xmlns:local="clr-namespace:LaboratoryMobileAppMVVM.Views"
+       xmlns:local="clr-namespace:LaboratoryMobileAppMVVM.Views" 
+       xmlns:laboratorymobileappmvvm="clr-namespace:LaboratoryMobileAppMVVM"
+       x:DataType="laboratorymobileappmvvm:AppShell"
        Title="LaboratoryMobileAppMVVM"
        x:Class="LaboratoryMobileAppMVVM.AppShell">
-
-    <!--
-        The overall app visual hierarchy is defined here, along with navigation.
-    
-        https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/
-    -->
 
     <Shell.Resources>
         <ResourceDictionary>
@@ -30,16 +26,12 @@
     </Shell.Resources>
 
     <TabBar>
-        <ShellContent Title="Новости лаборатории" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:NewsPage}" />
+        <ShellContent Title="Услуги" Icon="icon_about.png" ContentTemplate="{DataTemplate local:ServicesPage}" />
+        <ShellContent Title="Новости" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:NewsPage}" />
     </TabBar>
 
-    <!--
-        If you would like to navigate to this content you can do so by calling
-        await Shell.Current.GoToAsync("//LoginPage");
-    -->
     <TabBar>
         <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
     </TabBar>
-
 
 </Shell>

@@ -1,8 +1,5 @@
 ﻿using LaboratoryMobileAppMVVM.Services;
-using LaboratoryMobileAppMVVM.Views;
-using System;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace LaboratoryMobileAppMVVM
 {
@@ -14,6 +11,7 @@ namespace LaboratoryMobileAppMVVM
             InitializeComponent();
 
             DependencyService.Register<NewsDataStore>();
+            DependencyService.Register<ServiceDataStore>();
             MainPage = new AppShell();
         }
 

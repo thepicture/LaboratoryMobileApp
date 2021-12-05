@@ -6,14 +6,14 @@ using Xamarin.Forms;
 namespace LaboratoryMobileAppMVVM.ViewModels
 {
     [QueryProperty(nameof(ItemId), nameof(ItemId))]
-    public class NewsDetailViewModel : BaseViewModel
+    public class ServiceDetailViewModel : BaseViewModel
     {
         private string itemId;
-        private ResponseNews currentNews;
+        private ResponseService currentService;
 
-        public NewsDetailViewModel()
+        public ServiceDetailViewModel()
         {
-            Title = "Новость";
+            Title = "Информация об услуге";
         }
 
         public string ItemId
@@ -28,11 +28,11 @@ namespace LaboratoryMobileAppMVVM.ViewModels
                 LoadItemId(value);
             }
         }
-        public ResponseNews CurrentNews
+        public ResponseService CurrentService
         {
-            get => currentNews; set
+            get => currentService; set
             {
-                currentNews = value;
+                currentService = value;
                 OnPropertyChanged();
             }
         }
@@ -41,11 +41,11 @@ namespace LaboratoryMobileAppMVVM.ViewModels
         {
             try
             {
-                CurrentNews = await NewsDataStore.GetItemAsync(itemId);
+                CurrentService = await ServiceDataStore.GetItemAsync(itemId);
             }
             catch (Exception)
             {
-                Debug.WriteLine("Failed to Load News");
+                Debug.WriteLine("Failed to Load Service");
             }
         }
     }
