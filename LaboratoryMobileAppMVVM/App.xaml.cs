@@ -13,7 +13,7 @@ namespace LaboratoryMobileAppMVVM
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
+            DependencyService.Register<NewsDataStore>();
             MainPage = new AppShell();
         }
 

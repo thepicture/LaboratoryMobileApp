@@ -4,12 +4,12 @@ using Xamarin.Forms;
 
 namespace LaboratoryMobileAppMVVM.Views
 {
-    public partial class ItemDetailPage : ContentPage
+    public partial class NewsDetailPage : ContentPage
     {
-        public ItemDetailPage()
+        public NewsDetailPage()
         {
             InitializeComponent();
-            BindingContext = new ItemDetailViewModel();
+            BindingContext = new NewsDetailViewModel();
         }
     }
 }

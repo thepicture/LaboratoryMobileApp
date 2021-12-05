@@ -10,7 +10,7 @@ namespace LaboratoryMobileAppMVVM.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+        public IDataStore<ResponseNews> NewsDataStore => DependencyService.Get<IDataStore<ResponseNews>>();
 
         bool isBusy = false;
         public bool IsBusy

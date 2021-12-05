@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LaboratoryMobileAppMVVM.Views.NewsPage"
+             Title="{Binding Title}"
+             xmlns:local="clr-namespace:LaboratoryMobileAppMVVM.ViewModels"  
+             xmlns:model="clr-namespace:LaboratoryMobileAppMVVM.Models" 
+             xmlns:converters="clr-namespace:LaboratoryMobileAppMVVM.Converters"
+             x:Name="BrowseItemsPage">
+    <RefreshView x:DataType="local:NewsViewModel" 
+                 Command="{Binding LoadItemsCommand}" 
+                 IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <CollectionView x:Name="ItemsListView"
+                ItemsSource="{Binding Items}"
+                SelectionMode="None">
+            <CollectionView.Resources>
+                <converters:DateTimeConverter x:Key="DateConverter"></converters:DateTimeConverter>
+                <converters:AuthorConverter x:Key="AuthorConverter"></converters:AuthorConverter>
+            </CollectionView.Resources>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout HeightRequest="100"
+                                 x:DataType="model:ResponseNews">
+                        <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="4*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Source="{Binding ImagePreview, TargetNullValue=picture.png}"
+                               x:DataType="model:ResponseNews"
+                               Margin="10"/>
+                        <Grid Grid.Column="1" x:DataType="model:ResponseNews">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1.5*" />
+                                <RowDefinition Height="1*" />
+                            </Grid.RowDefinitions>
+                        <Label Text="{Binding Header}"
+                            LineBreakMode="WordWrap" 
+                            FontAttributes="Bold"
+                            TextColor="Black"
+                            Style="{DynamicResource ListItemTextStyles}" 
+                            FontSize="Medium"
+                            Margin="5"/>
+                        <Label Text="{Binding Author, Converter={StaticResource AuthorConverter}}" 
+                            LineBreakMode="NoWrap"
+                            Grid.Row="1"
+                            Style="{DynamicResource ListItemDetailTextStyle}"
+                            FontSize="Small"
+                            Opacity=".5"
+                            HorizontalTextAlignment="End"
+                            Margin="5"/>
+                            <Label Text="{Binding PublicationDate, Converter={StaticResource DateConverter}}" 
+                            LineBreakMode="NoWrap"
+                            Opacity=".5"
+                            Grid.Row="1"
+                            Style="{DynamicResource ListItemDetailTextStyle}"
+                            FontSize="Small"
+                            HorizontalTextAlignment="Start"
+                            Margin="5"/>
+                        </Grid>
+                        </Grid>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                NumberOfTapsRequired="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:NewsViewModel}}, Path=ItemTapped}"		
+                                CommandParameter="{Binding .}">
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+</ContentPage>

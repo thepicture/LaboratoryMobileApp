@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:LaboratoryMobileAppMVVM.ViewModels" xmlns:converters="clr-namespace:LaboratoryMobileAppMVVM.Converters"
+             x:DataType="viewmodels:NewsDetailViewModel"
+             x:Class="LaboratoryMobileAppMVVM.Views.NewsDetailPage"
+             Title="{Binding Title}">
+
+    <StackLayout Spacing="20" 
+                 Padding="15">
+        <Image Source="{Binding CurrentNews.ImagePreview, TargetNullValue=picture.png}"></Image>
+        <StackLayout Orientation="Horizontal"
+                     HorizontalOptions="Center">
+        <Frame CornerRadius="50"
+                 BackgroundColor="{StaticResource Primary}">
+            <Label Text="{Binding CurrentNews.Author}"></Label>
+        </Frame>
+            <Frame CornerRadius="50"
+                   BackgroundColor="#F0F0F0">
+                <Frame.Resources>
+                    <converters:DateTimeConverter x:Key="DateTimeConverter"></converters:DateTimeConverter>
+                </Frame.Resources>
+                <Label Text="{Binding CurrentNews.PublicationDate, Converter={StaticResource DateTimeConverter}}"></Label>
+            </Frame>
+        </StackLayout>
+            <Label Text="{Binding CurrentNews.Header}"
+                   Margin="5"
+                   FontSize="Medium"
+                   FontAttributes="Bold"
+                   TextColor="Black"></Label>
+        <Label Text="{Binding CurrentNews.NewsText}"
+               FontSize="Medium"
+               FontAttributes="Bold"
+               Margin="5"></Label>
+    </StackLayout>
+    
+</ContentPage>

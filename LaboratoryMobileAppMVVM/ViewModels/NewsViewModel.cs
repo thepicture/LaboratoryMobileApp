@@ -8,24 +8,22 @@ using Xamarin.Forms;
 
 namespace LaboratoryMobileAppMVVM.ViewModels
 {
-    public class ItemsViewModel : BaseViewModel
+    public class NewsViewModel : BaseViewModel
     {
-        private Item _selectedItem;
+        private ResponseNews _selectedItem;
 
-        public ObservableCollection<Item> Items { get; }
+        public ObservableCollection<ResponseNews> Items { get; }
         public Command LoadItemsCommand { get; }
         public Command AddItemCommand { get; }
-        public Command<Item> ItemTapped { get; }
+        public Command<ResponseNews> ItemTapped { get; }
 
-        public ItemsViewModel()
+        public NewsViewModel()
         {
-            Title = "Browse";
-            Items = new ObservableCollection<Item>();
+            Title = "Новости лаборатории";
+            Items = new ObservableCollection<ResponseNews>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-            ItemTapped = new Command<Item>(OnItemSelected);
-
-            AddItemCommand = new Command(OnAddItem);
+            ItemTapped = new Command<ResponseNews>(OnItemSelected);
         }
 
         async Task ExecuteLoadItemsCommand()
@@ -35,8 +33,8 @@ namespace LaboratoryMobileAppMVVM.ViewModels
             try
             {
                 Items.Clear();
-                var items = await DataStore.GetItemsAsync(true);
-                foreach (var item in items)
+                System.Collections.Generic.IEnumerable<ResponseNews> items = await NewsDataStore.GetItemsAsync(true);
+                foreach (ResponseNews item in items)
                 {
                     Items.Add(item);
                 }
@@ -57,7 +55,7 @@ namespace LaboratoryMobileAppMVVM.ViewModels
             SelectedItem = null;
         }
 
-        public Item SelectedItem
+        public ResponseNews SelectedItem
         {
             get => _selectedItem;
             set
@@ -67,18 +65,14 @@ namespace LaboratoryMobileAppMVVM.ViewModels
             }
         }
 
-        private async void OnAddItem(object obj)
-        {
-            await Shell.Current.GoToAsync(nameof(NewItemPage));
-        }
-
-        async void OnItemSelected(Item item)
+        async void OnItemSelected(ResponseNews item)
         {
             if (item == null)
+            {
                 return;
+            }
 
-            // This will push the ItemDetailPage onto the navigation stack
-            await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
+            await Shell.Current.GoToAsync($"{nameof(NewsDetailPage)}?{nameof(NewsDetailViewModel.ItemId)}={item.Id}");
         }
     }
 }

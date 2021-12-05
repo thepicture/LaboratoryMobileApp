@@ -12,15 +12,15 @@ using Xamarin.Forms.Xaml;
 
 namespace LaboratoryMobileAppMVVM.Views
 {
-    public partial class ItemsPage : ContentPage
+    public partial class NewsPage : ContentPage
     {
-        ItemsViewModel _viewModel;
+        NewsViewModel _viewModel;
 
-        public ItemsPage()
+        public NewsPage()
         {
             InitializeComponent();
 
-            BindingContext = _viewModel = new ItemsViewModel();
+            BindingContext = _viewModel = new NewsViewModel();
         }
 
         protected override void OnAppearing()
