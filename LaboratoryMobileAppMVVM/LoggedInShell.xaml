@@ -3,9 +3,9 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:LaboratoryMobileAppMVVM.Views" 
        xmlns:laboratorymobileappmvvm="clr-namespace:LaboratoryMobileAppMVVM"
-       x:DataType="laboratorymobileappmvvm:AppShell"
+       x:DataType="laboratorymobileappmvvm:LoggedInShell"
        Title="LaboratoryMobileAppMVVM"
-       x:Class="LaboratoryMobileAppMVVM.AppShell">
+       x:Class="LaboratoryMobileAppMVVM.LoggedInShell">
 
     <Shell.Resources>
         <ResourceDictionary>
@@ -26,7 +26,7 @@
     </Shell.Resources>
 
     <TabBar>
-        <ShellContent Title="Авторизация" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:LoginPage}"></ShellContent>
+        <ShellContent Title="Профиль" Icon="icon_about.png" ContentTemplate="{DataTemplate local:ProfilePage}"></ShellContent>
         <ShellContent Title="Услуги" Icon="icon_about.png" ContentTemplate="{DataTemplate local:ServicesPage}" />
         <ShellContent Title="Цены" Icon="icon_about.png" ContentTemplate="{DataTemplate local:PricesPage}"></ShellContent>
         <ShellContent Title="Новости" Icon="icon_feed.png" Route="NewsPage" ContentTemplate="{DataTemplate local:NewsPage}" />

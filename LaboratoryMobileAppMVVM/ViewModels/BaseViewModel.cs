@@ -14,6 +14,9 @@ namespace LaboratoryMobileAppMVVM.ViewModels
             .Get<IDataStore<ResponseNews>>();
         public IDataStore<ResponseService> ServiceDataStore => DependencyService
             .Get<IDataStore<ResponseService>>();
+        public ILoginService<Patient> PatientLoginService => DependencyService
+            .Get<ILoginService<Patient>>();
+        private Patient currentPatient;
 
         private bool isBusy = false;
         public bool IsBusy
@@ -27,6 +30,14 @@ namespace LaboratoryMobileAppMVVM.ViewModels
         {
             get => title;
             set => SetProperty(ref title, value);
+        }
+        public Patient CurrentPatient
+        {
+            get => currentPatient; set
+            {
+                currentPatient = value;
+                OnPropertyChanged();
+            }
         }
 
         protected bool SetProperty<T>(ref T backingStore, T value,

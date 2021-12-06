@@ -1,4 +1,6 @@
 ﻿using LaboratoryMobileAppMVVM.Services;
+using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace LaboratoryMobileAppMVVM
@@ -12,7 +14,22 @@ namespace LaboratoryMobileAppMVVM
 
             DependencyService.Register<NewsDataStore>();
             DependencyService.Register<ServiceDataStore>();
-            MainPage = new AppShell();
+            DependencyService.Register<PatientLoginService>();
+            DependencyService.Register<AndroidToast>();
+            SelectAppropriateShell();
+        }
+
+        private async void SelectAppropriateShell()
+        {
+            bool isLoggedIn = await SecureStorage.GetAsync("User") != null;
+            if (isLoggedIn)
+            {
+                MainPage = new LoggedInShell();
+            }
+            else
+            {
+                MainPage = new AppShell();
+            }
         }
 
         protected override void OnStart()
