@@ -81,11 +81,9 @@ namespace LaboratoryMobileAppMVVM.ViewModels
             IsValid = true;
         }
 
-        private async void SaveLoginData()
+        private void SaveLoginData()
         {
-            var serializedUser = new MemoryStream();
-            new DataContractJsonSerializer(typeof(Patient)).WriteObject(serializedUser, CurrentPatient);
-            await SecureStorage.SetAsync("User", Encoding.UTF8.GetString(serializedUser.ToArray()));
+            DependencyService.Get<StoragePatientSerializer>().Serialize(CurrentPatient);
             App.Current.MainPage = new LoggedInShell();
         }
     }

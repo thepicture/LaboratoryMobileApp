@@ -1,5 +1,4 @@
 ﻿using LaboratoryMobileAppMVVM.Services;
-using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -16,6 +15,8 @@ namespace LaboratoryMobileAppMVVM
             DependencyService.Register<ServiceDataStore>();
             DependencyService.Register<PatientLoginService>();
             DependencyService.Register<AndroidToast>();
+            DependencyService.Register<StoragePatientDeserializer>();
+            DependencyService.Register<StoragePatientSerializer>();
             SelectAppropriateShell();
         }
 

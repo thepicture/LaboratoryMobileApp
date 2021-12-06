@@ -10,6 +10,7 @@ namespace LaboratoryMobileAppMVVM
             InitializeComponent();
             Routing.RegisterRoute(nameof(NewsDetailPage), typeof(NewsDetailPage));
             Routing.RegisterRoute(nameof(ServiceDetailPage), typeof(ServiceDetailPage));
+            Routing.RegisterRoute(nameof(EditProfilePage), typeof(EditProfilePage));
         }
     }
 }

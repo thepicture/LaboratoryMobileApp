@@ -21,8 +21,8 @@ namespace LaboratoryMobileAppMVVM.ViewModels
         {
             Title = "Новости лаборатории";
             Items = new ObservableCollection<ResponseNews>();
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
+            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             ItemTapped = new Command<ResponseNews>(OnItemSelected);
         }
 

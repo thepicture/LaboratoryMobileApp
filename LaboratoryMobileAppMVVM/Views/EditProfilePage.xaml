@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:LaboratoryMobileAppMVVM.ViewModels"
+             x:DataType="viewmodels:EditProfileViewModel"
+             x:Class="LaboratoryMobileAppMVVM.Views.EditProfilePage">
+
+    <Shell.TitleView>
+        <Grid>
+            <Image Source="logo.png"
+                   HorizontalOptions="End"></Image>
+            <Label Text="{Binding Title}"
+                   VerticalOptions="Center"
+                   FontSize="Large"
+                   TextColor="White"></Label>
+        </Grid>
+    </Shell.TitleView>
+
+    <RefreshView x:DataType="viewmodels:EditProfileViewModel"
+                 Command="{Binding LoadItemsCommand}" 
+                 IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="3*" />
+            </Grid.RowDefinitions>
+            <Frame BackgroundColor="{StaticResource Primary}">
+                <Grid>
+                    <Image Source="logo.png"
+                           Margin="20"></Image>
+                    <Label Text="Редактирование профиля"
+                       TextColor="White"
+                       HorizontalOptions="End"
+                       VerticalOptions="End"
+                       FontSize="Large"></Label>
+                </Grid>
+            </Frame>
+            <StackLayout Padding="20,0,20,0"
+                     Grid.Row="1"
+                     VerticalOptions="Center">
+                <Entry Placeholder="Телефон"
+                   Margin="5"
+                   Text="{Binding CurrentPatient.PhoneNumber, Mode=TwoWay}"></Entry>
+                <Entry Placeholder="Email"
+                       Margin="5"
+                       Text="{Binding CurrentPatient.Email, Mode=TwoWay}"></Entry>
+                <Entry Placeholder="Пароль"
+                       Margin="5"
+                       IsPassword="True"
+                       Text="{Binding CurrentPatient.LoginAndPassword.NewPassword, Mode=TwoWay}"></Entry>
+                <Button VerticalOptions="Center" 
+                    Text="Сохранить изменения"
+                    CornerRadius="50" 
+                    Command="{Binding SaveChangesCommand}"
+                    IsEnabled="{Binding IsValid}"
+                    Margin="5"/>
+            </StackLayout>
+        </Grid>
+    </RefreshView>
+</ContentPage>
