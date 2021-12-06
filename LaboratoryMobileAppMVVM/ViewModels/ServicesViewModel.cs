@@ -34,7 +34,8 @@ namespace LaboratoryMobileAppMVVM.ViewModels
             try
             {
                 Items.Clear();
-                IEnumerable<ResponseService> items = await ServiceDataStore.GetItemsAsync(true);
+                IEnumerable<ResponseService> items =
+                    await ServiceDataStore.GetItemsAsync(true);
                 foreach (ResponseService item in items)
                 {
                     Items.Add(item);
@@ -61,19 +62,20 @@ namespace LaboratoryMobileAppMVVM.ViewModels
             get => _selectedItem;
             set
             {
-                SetProperty(ref _selectedItem, value);
+                _ = SetProperty(ref _selectedItem, value);
                 OnItemSelected(value);
             }
         }
 
-        async void OnItemSelected(ResponseService item)
+        private async void OnItemSelected(ResponseService item)
         {
             if (item == null)
             {
                 return;
             }
 
-            await Shell.Current.GoToAsync($"{nameof(ServiceDetailPage)}?{nameof(ServiceDetailViewModel.ItemId)}={item.Id}");
+            await Shell.Current.GoToAsync($"{nameof(ServiceDetailPage)}" +
+                $"?{nameof(ServiceDetailViewModel.ItemId)}={item.Id}");
         }
     }
 }

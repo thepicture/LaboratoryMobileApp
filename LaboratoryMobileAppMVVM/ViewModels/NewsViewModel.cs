@@ -26,14 +26,15 @@ namespace LaboratoryMobileAppMVVM.ViewModels
             ItemTapped = new Command<ResponseNews>(OnItemSelected);
         }
 
-        async Task ExecuteLoadItemsCommand()
+        private async Task ExecuteLoadItemsCommand()
         {
             IsBusy = true;
 
             try
             {
                 Items.Clear();
-                System.Collections.Generic.IEnumerable<ResponseNews> items = await NewsDataStore.GetItemsAsync(true);
+                System.Collections.Generic.IEnumerable<ResponseNews> items =
+                    await NewsDataStore.GetItemsAsync(true);
                 foreach (ResponseNews item in items)
                 {
                     Items.Add(item);
@@ -60,19 +61,20 @@ namespace LaboratoryMobileAppMVVM.ViewModels
             get => _selectedItem;
             set
             {
-                SetProperty(ref _selectedItem, value);
+                _ = SetProperty(ref _selectedItem, value);
                 OnItemSelected(value);
             }
         }
 
-        async void OnItemSelected(ResponseNews item)
+        private async void OnItemSelected(ResponseNews item)
         {
             if (item == null)
             {
                 return;
             }
 
-            await Shell.Current.GoToAsync($"{nameof(NewsDetailPage)}?{nameof(NewsDetailViewModel.ItemId)}={item.Id}");
+            await Shell.Current.GoToAsync($"{nameof(NewsDetailPage)}" +
+                $"?{nameof(NewsDetailViewModel.ItemId)}={item.Id}");
         }
     }
 }

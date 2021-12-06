@@ -33,14 +33,21 @@ namespace LaboratoryMobileAppMVVM.Services
         public async Task<ResponseNews> GetItemAsync(string id)
         {
             IEnumerable<ResponseNews> news = await GetItemsAsync();
-            return await Task.FromResult(news.FirstOrDefault(n => n.Id.ToString() == id));
+            return await Task.FromResult
+                (
+                    news.FirstOrDefault(n => n.Id.ToString() == id)
+                );
         }
 
-        public async Task<IEnumerable<ResponseNews>> GetItemsAsync(bool forceRefresh = false)
+        public async Task<IEnumerable<ResponseNews>> GetItemsAsync
+            (
+                bool forceRefresh = false
+            )
         {
             string url = Path.Combine(UrlTemplate, "news");
             byte[] response = await client.DownloadDataTaskAsync(new Uri(url));
-            ResponseNewsArray news = (ResponseNewsArray)serializer.ReadObject(new MemoryStream(response));
+            ResponseNewsArray news = (ResponseNewsArray)serializer
+                .ReadObject(new MemoryStream(response));
             return await Task.FromResult(news.News);
         }
 

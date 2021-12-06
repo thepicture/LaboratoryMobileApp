@@ -10,21 +10,23 @@ namespace LaboratoryMobileAppMVVM.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<ResponseNews> NewsDataStore => DependencyService.Get<IDataStore<ResponseNews>>();
-        public IDataStore<ResponseService> ServiceDataStore => DependencyService.Get<IDataStore<ResponseService>>();
+        public IDataStore<ResponseNews> NewsDataStore => DependencyService
+            .Get<IDataStore<ResponseNews>>();
+        public IDataStore<ResponseService> ServiceDataStore => DependencyService
+            .Get<IDataStore<ResponseService>>();
 
-        bool isBusy = false;
+        private bool isBusy = false;
         public bool IsBusy
         {
-            get { return isBusy; }
-            set { SetProperty(ref isBusy, value); }
+            get => isBusy;
+            set => SetProperty(ref isBusy, value);
         }
 
-        string title = string.Empty;
+        private string title = string.Empty;
         public string Title
         {
-            get { return title; }
-            set { SetProperty(ref title, value); }
+            get => title;
+            set => SetProperty(ref title, value);
         }
 
         protected bool SetProperty<T>(ref T backingStore, T value,
@@ -32,7 +34,9 @@ namespace LaboratoryMobileAppMVVM.ViewModels
             Action onChanged = null)
         {
             if (EqualityComparer<T>.Default.Equals(backingStore, value))
+            {
                 return false;
+            }
 
             backingStore = value;
             onChanged?.Invoke();
@@ -44,9 +48,11 @@ namespace LaboratoryMobileAppMVVM.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
-            var changed = PropertyChanged;
+            PropertyChangedEventHandler changed = PropertyChanged;
             if (changed == null)
+            {
                 return;
+            }
 
             changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
