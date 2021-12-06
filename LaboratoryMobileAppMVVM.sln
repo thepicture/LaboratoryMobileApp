@@ -5,7 +5,12 @@ VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaboratoryMobileAppMVVM.Android", "LaboratoryMobileAppMVVM.Android\LaboratoryMobileAppMVVM.Android.csproj", "{A7593C25-2983-4795-BA0D-C526D25F0A49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaboratoryMobileAppMVVM", "LaboratoryMobileAppMVVM\LaboratoryMobileAppMVVM.csproj", "{8DB9FCE4-A155-4953-BACA-3C9A046C113E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LaboratoryMobileAppMVVM", "LaboratoryMobileAppMVVM\LaboratoryMobileAppMVVM.csproj", "{8DB9FCE4-A155-4953-BACA-3C9A046C113E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A82C1173-C573-4D63-AD5A-43470D7CBAD6}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

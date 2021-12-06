@@ -27,7 +27,7 @@ namespace LaboratoryMobileAppMVVM.ViewModels
             ItemTapped = new Command<ResponseService>(OnItemSelected);
         }
 
-        async Task ExecuteLoadItemsCommand()
+        protected async Task ExecuteLoadItemsCommand()
         {
             IsBusy = true;
 

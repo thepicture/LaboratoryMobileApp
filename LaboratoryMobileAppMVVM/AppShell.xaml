@@ -27,6 +27,7 @@
 
     <TabBar>
         <ShellContent Title="Услуги" Icon="icon_about.png" ContentTemplate="{DataTemplate local:ServicesPage}" />
+        <ShellContent Title="Цены" Icon="icon_about.png" ContentTemplate="{DataTemplate local:PricesPage}"></ShellContent>
         <ShellContent Title="Новости" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:NewsPage}" />
     </TabBar>
 

@@ -5,6 +5,7 @@
              xmlns:converters="clr-namespace:LaboratoryMobileAppMVVM.Converters"
              x:DataType="viewmodels:NewsDetailViewModel"
              x:Class="LaboratoryMobileAppMVVM.Views.NewsDetailPage">
+    
         <Shell.TitleView>
             <Grid>
                 <Image Source="logo.png"

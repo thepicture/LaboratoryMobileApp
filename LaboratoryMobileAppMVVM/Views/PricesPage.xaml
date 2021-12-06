@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:LaboratoryMobileAppMVVM.ViewModels"
+             xmlns:models="clr-namespace:LaboratoryMobileAppMVVM.Models"
+             xmlns:converters="clr-namespace:LaboratoryMobileAppMVVM.Converters" 
+             x:DataType="local:PricesViewModel"
+             x:Class="LaboratoryMobileAppMVVM.Views.PricesPage">
+    <Shell.TitleView>
+        <Grid>
+            <Image Source="logo.png"
+                   HorizontalOptions="End"></Image>
+            <Label Text="{Binding Title}"
+                   VerticalOptions="Center"
+                   FontSize="Large"
+                   TextColor="White"></Label>
+        </Grid>
+    </Shell.TitleView>
+
+    <ContentPage.Content>
+        <RefreshView x:DataType="local:PricesViewModel"
+                     Command="{Binding LoadItemsCommand}" 
+                     IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+            <RefreshView.Resources>
+                <converters:PriceToGraphConverter x:Key="PriceToGraphConverter"></converters:PriceToGraphConverter>
+            </RefreshView.Resources>
+            <ListView x:Name="MyView"
+                      SelectionMode="None"
+                      ItemsSource="{Binding Items}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <AbsoluteLayout>
+                                    <StackLayout VerticalOptions="Center"
+                                                 x:DataType="models:ResponseService"
+                                                 Orientation="Horizontal">
+                                        <Grid WidthRequest="{Binding Price, Converter={StaticResource PriceToGraphConverter}}">
+                                            <Grid.Background>
+                                                <LinearGradientBrush StartPoint="0,0"
+                                                                     EndPoint="1,0">
+                                                    <GradientStop Color="{StaticResource Attention}"></GradientStop>
+                                                    <GradientStop Color="{StaticResource Primary}"
+                                                                  Offset=".5"></GradientStop>
+                                                </LinearGradientBrush>
+                                            </Grid.Background>
+                                            <Label Text="{Binding Price, StringFormat='{0:F2} руб.'}"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center"
+                                               TextColor="White"></Label>
+                                        </Grid>
+                                        <Label TextColor="Black"
+                                               VerticalOptions="Center"
+                                               FontAttributes="Bold"
+                                               Text="{Binding Name}"></Label>
+                                    </StackLayout>
+                                </AbsoluteLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </RefreshView>
+    </ContentPage.Content>
+</ContentPage>
