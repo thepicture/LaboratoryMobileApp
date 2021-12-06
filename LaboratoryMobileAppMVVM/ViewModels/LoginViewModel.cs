@@ -66,7 +66,7 @@ namespace LaboratoryMobileAppMVVM.ViewModels
             DependencyService.Get<AndroidToast>().Show("Авторизация...");
             if (PatientLoginService.IsSuccessLogin(Login, Password))
             {
-                await Task.Run(() => CurrentPatient = PatientLoginService.GetLoginObjectAsync());
+                await Task.Run(() => CurrentPatient = PatientLoginService.GetLoginObject());
                 DependencyService.Get<AndroidToast>().Show("Вы успешно авторизованы, пациент " +
                     CurrentPatient.FullName);
                 SaveLoginData();

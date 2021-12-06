@@ -22,7 +22,7 @@ namespace LaboratoryMobileAppMVVM.Services
             deserializer = new DataContractJsonSerializer(typeof(Patient));
         }
 
-        public Patient GetLoginObjectAsync()
+        public Patient GetLoginObject()
         {
             return patient;
         }

@@ -3,6 +3,6 @@
     public interface ILoginService<T>
     {
         bool IsSuccessLogin(string login, string password);
-        T GetLoginObjectAsync();
+        T GetLoginObject();
     }
 }
