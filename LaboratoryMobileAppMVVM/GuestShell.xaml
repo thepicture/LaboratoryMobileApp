@@ -3,9 +3,9 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:LaboratoryMobileAppMVVM.Views" 
        xmlns:laboratorymobileappmvvm="clr-namespace:LaboratoryMobileAppMVVM"
-       x:DataType="laboratorymobileappmvvm:AppShell"
+       x:DataType="laboratorymobileappmvvm:GuestShell"
        Title="LaboratoryMobileAppMVVM"
-       x:Class="LaboratoryMobileAppMVVM.AppShell">
+       x:Class="LaboratoryMobileAppMVVM.GuestShell">
 
     <Shell.Resources>
         <ResourceDictionary>

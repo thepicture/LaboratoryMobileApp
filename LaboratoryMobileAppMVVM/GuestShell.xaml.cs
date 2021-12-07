@@ -3,9 +3,9 @@ using Xamarin.Forms;
 
 namespace LaboratoryMobileAppMVVM
 {
-    public partial class AppShell : Shell
+    public partial class GuestShell : Shell
     {
-        public AppShell()
+        public GuestShell()
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(NewsDetailPage), typeof(NewsDetailPage));

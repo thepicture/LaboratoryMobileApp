@@ -29,7 +29,7 @@ namespace LaboratoryMobileAppMVVM
             }
             else
             {
-                MainPage = new AppShell();
+                MainPage = new GuestShell();
             }
         }
 

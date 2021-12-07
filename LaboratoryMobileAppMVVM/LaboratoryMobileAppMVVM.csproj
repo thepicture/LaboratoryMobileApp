@@ -17,6 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="GuestShell.xaml.cs">
+      <DependentUpon>GuestShell.xaml</DependentUpon>
+    </Compile>
     <Compile Update="LoggedInShell.xaml.cs">
       <DependentUpon>LoggedInShell.xaml</DependentUpon>
     </Compile>

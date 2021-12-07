@@ -20,60 +20,64 @@
     <RefreshView x:DataType="viewmodels:ProfileViewModel"
                      Command="{Binding LoadItemsCommand}" 
                      IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-        <StackLayout>
-            <StackLayout.Resources>
-                <converters:DateTimeToAgeConverter x:Key="DateToAge"></converters:DateTimeToAgeConverter>
-            </StackLayout.Resources>
-            <StackLayout Orientation="Horizontal"
+        <ScrollView>
+            <StackLayout>
+                <StackLayout.Resources>
+                    <converters:DateTimeToAgeConverter x:Key="DateToAge"></converters:DateTimeToAgeConverter>
+                </StackLayout.Resources>
+                <StackLayout Orientation="Horizontal"
                              HorizontalOptions="Center"
                              Margin="20">
-                <Image Source="picture.png" WidthRequest="100"></Image>
-                <StackLayout VerticalOptions="Center">
-                    <Label Text="{Binding CurrentPatient.FullName}"
+                    <Image Source="picture.png" WidthRequest="100"></Image>
+                    <StackLayout VerticalOptions="Center">
+                        <Label Text="{Binding CurrentPatient.FullName}"
                            FontSize="Large"
                            TextColor="Black"
                            FontAttributes="Bold"></Label>
-                    <Label Text="Пациент"
+                        <Label Text="Пациент"
                                FontSize="Medium"></Label>
+                    </StackLayout>
                 </StackLayout>
-            </StackLayout>
-
-            <Frame BackgroundColor="{StaticResource Primary}"
+                <Frame BackgroundColor="{StaticResource Primary}"
                    Margin="20">
-                <StackLayout>
-                    <Label Text="Информация о дате рождения"
+                    <StackLayout>
+                        <Label Text="Информация о дате рождения"
                        FontAttributes="Bold"
                        FontSize="Medium"
                        Margin="20,0,20,0"></Label>
-                    <Label Text="{Binding CurrentPatient.BirthDate, StringFormat='Дата рождения: {0}'}"
+                        <Label Text="{Binding CurrentPatient.BirthDate, StringFormat='Дата рождения: {0}'}"
                        Margin="20,0,20,0"></Label>
-                    <Label Text="{Binding CurrentPatient.BirthDate, StringFormat='Возраст (полных лет): {0}', Converter={StaticResource DateToAge}}"
+                        <Label Text="{Binding CurrentPatient.BirthDate, StringFormat='Возраст (полных лет): {0}', Converter={StaticResource DateToAge}}"
                        Margin="20,0,20,0"></Label>
-                    <Label Text="Паспортные данные"
+                        <Label Text="Паспортные данные"
                        FontAttributes="Bold"
                        FontSize="Medium"
                        Margin="20,0,20,0"></Label>
-                    <Label Text="{Binding CurrentPatient.PassNum, StringFormat='Номер паспорта: {0}'}"
+                        <Label Text="{Binding CurrentPatient.PassNum, StringFormat='Номер паспорта: {0}'}"
                        Margin="20,0,20,0"></Label>
-                    <Label Text="{Binding CurrentPatient.PassSeries, StringFormat='Серия паспорта: {0}'}"
+                        <Label Text="{Binding CurrentPatient.PassSeries, StringFormat='Серия паспорта: {0}'}"
                        Margin="20,0,20,0"></Label>
-                    <Label Text="Остальная информация"
+                        <Label Text="Остальная информация"
                        FontAttributes="Bold"
                        FontSize="Medium"
                        Margin="20,0,20,0"></Label>
-                    <Label Text="{Binding CurrentPatient.InsuranceNumber, StringFormat='Номер страхового  полиса: {0}'}"
+                        <Label Text="{Binding CurrentPatient.InsuranceNumber, StringFormat='Номер страхового  полиса: {0}'}"
                        Margin="20,0,20,0"></Label>
-                    <Label Text="{Binding CurrentPatient.PhoneNumber, StringFormat='Телефон: {0}'}"
+                        <Label Text="{Binding CurrentPatient.PhoneNumber, StringFormat='Телефон: {0}'}"
                        Margin="20,0,20,0"></Label>
-                    <Label Text="{Binding CurrentPatient.Email, StringFormat='Email: {0}'}"
+                        <Label Text="{Binding CurrentPatient.Email, StringFormat='Email: {0}'}"
                        Margin="20,0,20,0"></Label>
-                    <Label Text="{Binding CurrentPatient.LoginAndPassword.Password, StringFormat='Пароль: {0}'}"
+                        <Label Text="{Binding CurrentPatient.LoginAndPassword.Password, StringFormat='Пароль: {0}'}"
                        Margin="20,0,20,0"></Label>
-                    <Button Text="Изменить информацию"
+                        <Button Text="Изменить информацию"
                             BackgroundColor="{StaticResource Attention}"
                             Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:ProfileViewModel}}, Path=ItemTapped}"></Button>
-                </StackLayout>
-            </Frame>
-        </StackLayout>
+                        <Button Text="Выйти из аккаунта"
+                            BackgroundColor="{StaticResource Attention}"
+                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:ProfileViewModel}}, Path=LogOut}"></Button>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
     </RefreshView>
 </ContentPage>
