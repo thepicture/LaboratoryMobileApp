@@ -11,8 +11,13 @@ namespace LaboratoryMobileAppMVVM.Services
         public async void Serialize(Patient entity)
         {
             MemoryStream serializedUser = new MemoryStream();
-            new DataContractJsonSerializer(typeof(Patient)).WriteObject(serializedUser, entity);
-            await SecureStorage.SetAsync("User", Encoding.UTF8.GetString(serializedUser.ToArray()));
+            new DataContractJsonSerializer(typeof(Patient)).WriteObject
+                (
+                    serializedUser, entity
+                );
+            string userAsJson = Encoding.UTF8.GetString(serializedUser.ToArray());
+            await SecureStorage.SetAsync("User",
+                                         userAsJson);
         }
     }
 }

@@ -18,6 +18,7 @@ namespace LaboratoryMobileAppMVVM
             DependencyService.Register<StoragePatientDeserializer>();
             DependencyService.Register<StoragePatientSerializer>();
             DependencyService.Register<PatientRegisterService>();
+            DependencyService.Register<PatientUpdateService>();
             SelectAppropriateShell();
         }
 

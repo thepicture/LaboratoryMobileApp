@@ -12,6 +12,11 @@ namespace LaboratoryMobileAppMVVM.Converters
                               object parameter,
                               CultureInfo culture)
         {
+            return AuthorFullNameWithoutType(value);
+        }
+
+        private static string AuthorFullNameWithoutType(object value)
+        {
             return string.Join(" ", ((string)value).Split(' ').ToList().Skip(1));
         }
 

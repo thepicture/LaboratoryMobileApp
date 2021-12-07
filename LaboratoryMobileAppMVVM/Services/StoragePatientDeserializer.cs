@@ -12,12 +12,18 @@ namespace LaboratoryMobileAppMVVM.Services
     {
         public async Task<Patient> DeserializeAsync()
         {
-            DataContractJsonSerializer deserializer = new DataContractJsonSerializer(typeof(Patient));
+            DataContractJsonSerializer deserializer = 
+                new DataContractJsonSerializer(typeof(Patient));
             string jsonPatient = await SecureStorage.GetAsync("User");
-            Patient storagePatient = (Patient)deserializer.ReadObject(new MemoryStream(Encoding.UTF8.GetBytes(jsonPatient)));
-            return DependencyService.Get<PatientLoginService>().IsSuccessLogin(storagePatient.LoginAndPassword.Login,
-                storagePatient.LoginAndPassword.Password)
-                ? await Task.FromResult(DependencyService.Get<PatientLoginService>().GetLoginObject())
+            Patient storagePatient = (Patient)deserializer.ReadObject
+                (
+                    new MemoryStream(Encoding.UTF8.GetBytes(jsonPatient))
+                );
+            return DependencyService.Get<PatientLoginService>()
+                .IsSuccessLogin(storagePatient.LoginAndPassword.Login,
+                                storagePatient.LoginAndPassword.Password)
+                ? await Task.FromResult(DependencyService.Get<PatientLoginService>()
+                                                         .GetLoginObject())
                 : null;
         }
     }

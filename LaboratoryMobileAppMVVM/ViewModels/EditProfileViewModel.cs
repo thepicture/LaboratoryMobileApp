@@ -1,11 +1,5 @@
-﻿using LaboratoryMobileAppMVVM.Models;
-using LaboratoryMobileAppMVVM.Services;
+﻿using LaboratoryMobileAppMVVM.Services;
 using System;
-using System.Diagnostics;
-using System.IO;
-using System.Net;
-using System.Runtime.Serialization.Json;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -13,10 +7,12 @@ namespace LaboratoryMobileAppMVVM.ViewModels
 {
     public class EditProfileViewModel : ProfileViewModel
     {
+        private const int UpdateInterval = 1;
+
         public EditProfileViewModel()
         {
             Title = "Редактирование профиля";
-            Device.StartTimer(TimeSpan.FromSeconds(1), () =>
+            Device.StartTimer(TimeSpan.FromSeconds(UpdateInterval), () =>
             {
                 IsValid = CanSaveClickedExecute();
                 return true;
@@ -60,29 +56,20 @@ namespace LaboratoryMobileAppMVVM.ViewModels
 
         private void SaveChanges()
         {
-            try
+            if (PatientUpdateService.IsSuccessUpdate(CurrentPatient))
             {
-                var serializer = new DataContractJsonSerializer(typeof(Patient));
-                var stream = new MemoryStream();
-                serializer.WriteObject(stream, CurrentPatient);
-
-                WebClient client = new WebClient();
-                client.Headers.Add("Content-Type", "application/json");
-                client.Encoding = System.Text.Encoding.UTF8;
-                string jsonPatient = Encoding.UTF8.GetString(stream.ToArray());
-                string response = client.UploadString("http://10.0.2.2:60954/api/patient/profile",
-                                                      WebRequestMethods.Http.Put,
-                                                      jsonPatient);
-
-                CurrentPatient = (Patient)serializer.ReadObject(new MemoryStream(Encoding.UTF8.GetBytes(response)));
-                DependencyService.Get<StoragePatientSerializer>().Serialize(CurrentPatient);
-
-                DependencyService.Get<AndroidToast>().Show("Изменения успешно сохранены!");
+                DependencyService.Get<AndroidToast>().Show("Изменения " +
+                    "успешно сохранены!");
+                CurrentPatient = PatientUpdateService.GetUpdatedObject();
+                DependencyService.Get<StoragePatientSerializer>().Serialize
+                    (
+                        CurrentPatient
+                    );
             }
-            catch (Exception ex)
+            else
             {
-                Debug.WriteLine(ex.Message);
-                DependencyService.Get<AndroidToast>().Show("Изменения не сохранены. " +
+                DependencyService.Get<AndroidToast>().Show("Изменения " +
+                    "не сохранены. " +
                     "Попробуйте сохранить изменения ещё раз");
             }
         }

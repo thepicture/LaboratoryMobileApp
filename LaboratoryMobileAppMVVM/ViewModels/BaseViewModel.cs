@@ -18,6 +18,9 @@ namespace LaboratoryMobileAppMVVM.ViewModels
             .Get<ILoginService<Patient>>();
         public IRegisterService<Patient> PatientRegisterService => DependencyService
            .Get<IRegisterService<Patient>>();
+        public IUpdateService<Patient> PatientUpdateService => DependencyService
+       .Get<IUpdateService<Patient>>();
+
         private Patient currentPatient;
 
         private bool isBusy = false;

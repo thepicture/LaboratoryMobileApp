@@ -1,13 +1,6 @@
-﻿using Android.Preferences;
-using LaboratoryMobileAppMVVM.Models;
-using LaboratoryMobileAppMVVM.Services;
+﻿using LaboratoryMobileAppMVVM.Services;
 using LaboratoryMobileAppMVVM.Views;
-using System;
-using System.IO;
-using System.Runtime.Serialization.Json;
-using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace LaboratoryMobileAppMVVM.ViewModels
@@ -66,15 +59,18 @@ namespace LaboratoryMobileAppMVVM.ViewModels
             DependencyService.Get<AndroidToast>().Show("Авторизация...");
             if (PatientLoginService.IsSuccessLogin(Login, Password))
             {
-                await Task.Run(() => CurrentPatient = PatientLoginService.GetLoginObject());
-                DependencyService.Get<AndroidToast>().Show("Вы успешно авторизованы, пациент " +
+                await Task.Run(() => CurrentPatient = PatientLoginService
+                                                      .GetLoginObject());
+                DependencyService.Get<AndroidToast>().Show("Вы " +
+                    "успешно авторизованы, пациент " +
                     CurrentPatient.FullName);
                 SaveLoginData();
                 await Shell.Current.GoToAsync($"//{nameof(NewsPage)}");
             }
             else
             {
-                DependencyService.Get<AndroidToast>().Show("Неверный логин или пароль. " +
+                DependencyService.Get<AndroidToast>().Show("Неверный " +
+                    "логин или пароль. " +
                     "Пожалуйста, проверьте данные авторизации " +
                     "или зарегистрируйтесь");
             }
@@ -83,7 +79,8 @@ namespace LaboratoryMobileAppMVVM.ViewModels
 
         private void SaveLoginData()
         {
-            DependencyService.Get<StoragePatientSerializer>().Serialize(CurrentPatient);
+            DependencyService.Get<StoragePatientSerializer>()
+                             .Serialize(CurrentPatient);
             App.Current.MainPage = new LoggedInShell();
         }
     }

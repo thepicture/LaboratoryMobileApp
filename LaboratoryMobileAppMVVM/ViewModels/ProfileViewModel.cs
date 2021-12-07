@@ -44,7 +44,9 @@ namespace LaboratoryMobileAppMVVM.ViewModels
 
             try
             {
-                CurrentPatient = await DependencyService.Get<StoragePatientDeserializer>().DeserializeAsync();
+                CurrentPatient = await DependencyService
+                                       .Get<StoragePatientDeserializer>()
+                                       .DeserializeAsync();
                 CurrentPatient.LoginAndPassword.NewPassword =
                     CurrentPatient.LoginAndPassword.Password;
             }

@@ -41,10 +41,14 @@ namespace LaboratoryMobileAppMVVM.Services
                 string requestPatientJson = Encoding.UTF8.GetString(request.ToArray());
                 client.Headers.Add("Content-Type", "application/json");
                 client.Encoding = Encoding.UTF8;
-                string response = client.UploadString(new Uri(UrlTemplate), requestPatientJson);
+                string response = client.UploadString(new Uri(UrlTemplate),
+                                                      requestPatientJson);
                 try
                 {
-                    patient = (Patient)deserializer.ReadObject(new MemoryStream(Encoding.UTF8.GetBytes(response)));
+                    patient = (Patient)deserializer.ReadObject
+                        (
+                            new MemoryStream(Encoding.UTF8.GetBytes(response))
+                        );
                 }
                 catch (Exception ex)
                 {

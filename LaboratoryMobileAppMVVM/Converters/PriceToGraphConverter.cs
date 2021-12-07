@@ -6,6 +6,9 @@ namespace LaboratoryMobileAppMVVM.Converters
 {
     public class PriceToGraphConverter : IValueConverter
     {
+        private const int HalfOfScreenFactor = 2;
+        private const int MaxCostFactor = 5000;
+
         public object Convert(object value,
                               Type targetType,
                               object parameter,
@@ -13,9 +16,9 @@ namespace LaboratoryMobileAppMVVM.Converters
         {
             decimal price = (decimal)value;
             return price == 0
-                ? App.Current.MainPage.Width / 2
-                : (object)(((decimal)App.Current.MainPage.Width / 2)
-                - (1 / price * 5000));
+                ? App.Current.MainPage.Width / HalfOfScreenFactor
+                : (object)(((decimal)App.Current.MainPage.Width / HalfOfScreenFactor)
+                - (1 / price * MaxCostFactor));
         }
 
         public object ConvertBack(object value,
