@@ -17,6 +17,7 @@ namespace LaboratoryMobileAppMVVM
             DependencyService.Register<AndroidToast>();
             DependencyService.Register<StoragePatientDeserializer>();
             DependencyService.Register<StoragePatientSerializer>();
+            DependencyService.Register<PatientRegisterService>();
             SelectAppropriateShell();
         }
 

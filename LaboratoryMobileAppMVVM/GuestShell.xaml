@@ -26,6 +26,7 @@
     </Shell.Resources>
 
     <TabBar>
+        <ShellContent Title="Регистрация" Icon="icon_about.png" ContentTemplate="{DataTemplate local:RegisterPage}"></ShellContent>
         <ShellContent Title="Авторизация" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:LoginPage}"></ShellContent>
         <ShellContent Title="Услуги" Icon="icon_about.png" ContentTemplate="{DataTemplate local:ServicesPage}" />
         <ShellContent Title="Цены" Icon="icon_about.png" ContentTemplate="{DataTemplate local:PricesPage}"></ShellContent>
